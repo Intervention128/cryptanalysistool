@@ -3,7 +3,7 @@ import type {FC} from 'react'
 
 const Processors: FC = () => {
   return (
-    <Grid item xs={2}>
+    <Grid item xs={6}>
       <Box sx={{height: '100%'}} />
     </Grid>
   )

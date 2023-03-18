@@ -1,3 +1,4 @@
+import {Add} from '@mui/icons-material'
 import {Card, CardHeader, Fab, Grid} from '@mui/material'
 import type {FC} from 'react'
 
@@ -7,9 +8,13 @@ const Information: FC = () => {
       <Card sx={{height: '100%', position: 'relative'}}>
         <CardHeader title="Information" />
         <Fab
-          variant="extended" color="primary" aria-label="add"
-          sx={{position: 'absolute', bottom: 15, right: 15}}
-        />
+          variant="extended"
+          color="primary"
+          aria-label="add"
+          sx={{position: 'absolute', bottom: 15, right: 15, p: 0}}
+        >
+          <Add />
+        </Fab>
       </Card>
     </Grid>
   )

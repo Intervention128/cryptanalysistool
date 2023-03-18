@@ -1,7 +1,8 @@
-import "./App.css";
-import logo from "./logo.svg";
+import type {FC} from 'react'
+import './App.css'
+import logo from './logo.svg'
 
-function App() {
+const App: FC = () => {
   return (
     <div className="App" role="main">
       <article className="App-article">
@@ -17,7 +18,7 @@ function App() {
         </a>
       </article>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

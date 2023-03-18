@@ -2,17 +2,32 @@
   "name": "cryptanalysistool",
   "version": "0.1.79",
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^3.0.3"
+  },
+  "scripts": {
+    "start": "bun dev",
+    "build": "react-scripts build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "eslintConfig": {
     "extends": [
-      "react-app"
+      "@singularit"
     ]
   },
   "devDependencies": {
+    "eslint": "^8.36.0",
     "typescript": "latest",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@singularit/eslint-config-react": "^1.1.0",
     "react-refresh": "0.10.0"
   }
 }

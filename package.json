@@ -14,6 +14,7 @@
   "scripts": {
     "start": "bun dev",
     "build": "react-scripts build",
+    "cypress:open": "cypress open",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
@@ -23,11 +24,12 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^8.36.0",
-    "typescript": "latest",
+    "@singularit/eslint-config-react": "^1.1.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
-    "@singularit/eslint-config-react": "^1.1.0",
-    "react-refresh": "0.10.0"
+    "cypress": "^12.8.1",
+    "eslint": "^8.36.0",
+    "react-refresh": "0.10.0",
+    "typescript": "latest"
   }
 }

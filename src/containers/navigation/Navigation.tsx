@@ -1,4 +1,5 @@
-import {AppBar, Typography} from '@mui/material'
+import {Help, PlayArrow} from '@mui/icons-material'
+import {AppBar, Box, IconButton, Toolbar, Typography} from '@mui/material'
 import {Container} from '@mui/system'
 import type {FC} from 'react'
 
@@ -6,9 +7,25 @@ const Navigation: FC = () => {
   return (
     <AppBar position="static">
       <Container>
-        <Typography variant="h4" noWrap>
-          Cryptanalysis tool
-        </Typography>
+        <Toolbar>
+          <Typography variant="h5" noWrap>
+            CRYPTANALYSIS
+          </Typography>
+          <Box sx={{flexGrow: 1}} />
+          <IconButton
+            size="large"
+            aria-label="run analysis"
+            sx={{color: 'primary.main'}}
+          >
+            <PlayArrow />
+          </IconButton>
+          <IconButton
+            size="large"
+            aria-label="help"
+          >
+            <Help />
+          </IconButton>
+        </Toolbar>
       </Container>
     </AppBar>
   )

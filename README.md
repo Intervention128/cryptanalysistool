@@ -48,7 +48,7 @@ Commit messages should follow the [Conventional Commits](https://www.conventiona
 - Do not submit PRs against the `main` branch. Checkout a topic branch from the relevant branch (e.g. develop) and merge back against that branch
 - Work in the `src` folder
 - It's okay to have multiple small commits - GitHub will automatically squash it before merging
-- Make sure the project can be built using `npm run build`
+- Make sure the project can be built using `bun build`
 - If you are fixing a bug:
     - If you are resolving a special issue, add `(fix #xxxx[,#xxxx])` (#xxxx is the issue id) in your Pull Request title.
     - Add appropriate test coverage if applicable

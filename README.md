@@ -3,7 +3,7 @@ A stab at building a versatile, useful and scalable tool for analysing and crack
 
 # React with Bun runtime
 
-This is a React project bootstrapped with [bun](https://bun.sh/). The interface is designed using [mui](https://mui.com/) and testing is handled via [cypress](https://www.cypress.io/).
+This is a React project bootstrapped with [vite](https://vitejs.dev/). The interface is designed using [mui](https://mui.com/) and testing is handled via [cypress](https://www.cypress.io/).
 
 # Contributing
 
@@ -13,15 +13,11 @@ This is a React project bootstrapped with [bun](https://bun.sh/). The interface 
 
 ## Development Setup
 
-It's best if you start with a fresh wsl ubuntu. Install [bun](https://bun.sh/):
-```sh
-curl -fsSL https://bun.sh/install | bash
-```
-
 1. Fork from GitHub
 2. Clone the forked project
 3. checkout develop branch
-4. Run `bun a` to install dependencies.
+4. Run `npm i` to install dependencies.
+5. Start using `npm run dev`
 
 [//]: # (This is where you can add testing instructions)
 

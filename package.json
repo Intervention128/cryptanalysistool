@@ -1,35 +1,37 @@
 {
   "name": "cryptanalysistool",
-  "version": "0.1.79",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "cypress:open": "cypress open",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.13",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1",
-    "web-vitals": "^3.0.3"
-  },
-  "scripts": {
-    "start": "bun dev",
-    "build": "react-scripts build",
-    "cypress:open": "cypress open",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
-  },
-  "eslintConfig": {
-    "extends": [
-      "@singularit"
-    ]
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@singularit/eslint-config-react": "^1.1.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^3.1.0",
     "cypress": "^12.8.1",
     "eslint": "^8.36.0",
-    "react-refresh": "0.10.0",
-    "typescript": "latest"
+    "typescript": "^4.9.3",
+    "vite": "^4.2.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@singularit"
+    ]
   }
 }

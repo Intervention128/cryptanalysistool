@@ -1,7 +1,8 @@
 # Cryptanalysis Tool
-A stab at building a versatile, useful and scalable tool for analysing and cracking ciphertexts.
+A stab at building a versatile, useful and scalable tool for analysing and cracking ciphertexts. 
+[Live version](https://cryptanalysistool.com/) | [Dev version](https://dev.cryptanalysistool.pages.dev/)
 
-# React with Bun runtime
+# React with vite
 
 This is a React project bootstrapped with [vite](https://vitejs.dev/). The interface is designed using [mui](https://mui.com/) and testing is handled via [cypress](https://www.cypress.io/).
 

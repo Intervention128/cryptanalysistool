@@ -5,7 +5,7 @@ import CipherOutput from './CipherOutput'
 
 const Cipher: FC = () => {
   return (
-    <Grid item xs={4}>
+    <Grid item xs={8}>
       <Grid container spacing={1} direction="row">
         <Grid item xs={12}>
           <CipherInput />

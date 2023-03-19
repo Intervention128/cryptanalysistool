@@ -1,3 +1,3 @@
 export interface ProcessHandle {
-  runProcess: (cipher: string) => string
+  run: (cipher: string) => string
 }

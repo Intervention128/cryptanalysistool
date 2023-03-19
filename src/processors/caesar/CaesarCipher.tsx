@@ -1,11 +1,11 @@
 import {forwardRef, useImperativeHandle} from 'react'
 import type {ProcessHandle} from '../../types/ProcessHandle'
 
-const CaesarCipher = forwardRef<ProcessHandle, never>((ref) => {
+const CaesarCipher = forwardRef<ProcessHandle, object>((_, ref) => {
   CaesarCipher.displayName = 'CaesarCipher'
 
   useImperativeHandle(ref, () => ({
-    process: (input: string) => {
+    run: (input: string) => {
       return input
     },
   }))

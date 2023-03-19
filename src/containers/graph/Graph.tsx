@@ -3,7 +3,7 @@ import type {FC} from 'react'
 
 const Graph: FC = () => {
   return (
-    <Grid item xs={6}>
+    <Grid item xs={12}>
       <Card sx={{height: '100%'}}>
         <CardHeader title="Graph" />
       </Card>

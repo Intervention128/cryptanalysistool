@@ -1,12 +1,13 @@
 import {Delete, Info} from '@mui/icons-material'
 import {Card, CardContent, CardHeader, Grid, IconButton, Switch} from '@mui/material'
 import type {FC} from 'react'
-import {useRef, useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 
 import type {AvailableProcessors} from '../../processors/processors'
 import processors from '../../processors/processors'
 import {useAppDispatch} from '../../redux/hooks'
-import {deleteProcessor} from '../../redux/slices/queueSlice'
+import {updateResult, useResult} from '../../redux/slices/cipherTextSlice'
+import {deleteProcessor, nextRunner, useCurrentRunner} from '../../redux/slices/queueSlice'
 import type {ProcessHandle} from '../../types/ProcessHandle'
 
 interface ProcessorFrameProps {
@@ -19,6 +20,15 @@ const ProcessorFrame: FC<ProcessorFrameProps> = ({processorId, mountedId}) => {
   const processorRef = useRef<ProcessHandle>(null)
   const [active, setActive] = useState(true)
   const dispatch = useAppDispatch()
+  const currentRunner = useCurrentRunner()
+  const currentResult = useResult()
+
+  useEffect(() => {
+    if (!active || currentRunner !== mountedId) return
+    const nextResult = processorRef.current?.run(currentResult)
+    dispatch(updateResult(nextResult))
+    dispatch(nextRunner())
+  }, [currentRunner, currentResult, active])
 
   return (
     <Grid item xs={12}>

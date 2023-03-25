@@ -1,8 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit'
 import queue from './slices/queueSlice'
+import cipherText from './slices/cipherTextSlice'
 
 const store = configureStore({
   reducer: {
+    cipherText,
     queue,
   },
 })

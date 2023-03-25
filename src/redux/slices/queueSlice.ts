@@ -6,10 +6,12 @@ import {useAppSelector} from '../hooks'
 
 interface QueueState {
   queue: QueueItem[]
+  currentRunner: string | null
 }
 
 const initialState: QueueState = {
   queue: [],
+  currentRunner: null,
 }
 
 export const queueSlice = createSlice({
@@ -31,11 +33,21 @@ export const queueSlice = createSlice({
     deleteProcessor: (state, action: PayloadAction<string>) => {
       state.queue = state.queue.filter(item => item.mountedId !== action.payload)
     },
+    runQueue: (state) => {
+      state.currentRunner = state.queue[0].mountedId
+    },
+    nextRunner: (state) => {
+      if (state.currentRunner === null) return
+      const currentRunnerIndex = state.queue.findIndex(item => item.mountedId === state.currentRunner)
+      if (currentRunnerIndex === state.queue.length - 1) state.currentRunner = null
+      else state.currentRunner = state.queue[currentRunnerIndex + 1].mountedId
+    },
   },
 })
 
-export const {mountProcessor, changePosition, deleteProcessor} = queueSlice.actions
+export const {mountProcessor, changePosition, deleteProcessor, runQueue, nextRunner} = queueSlice.actions
 
 export const useQueue = () => useAppSelector(state => state.queue.queue)
+export const useCurrentRunner = () => useAppSelector(state => state.queue.currentRunner)
 
 export default queueSlice.reducer

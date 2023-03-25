@@ -1,9 +1,9 @@
 import {configureStore} from '@reduxjs/toolkit'
-import processors from './slices/processorsSlice'
+import queue from './slices/queueSlice'
 
 const store = configureStore({
   reducer: {
-    processors,
+    queue,
   },
 })
 

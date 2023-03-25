@@ -1,8 +1,6 @@
-import type {Processors} from '../processors/processors'
+import type {AvailableProcessors} from '../processors/processors'
 
-export interface Processor {
-  name: string
-  processorId: keyof Processors
-  run: (input: string) => string
+export interface QueueItem {
+  processorId: keyof AvailableProcessors
   mountedId: string
 }

@@ -1,47 +1,49 @@
 import {Delete, Info} from '@mui/icons-material'
 import {Card, CardContent, CardHeader, Grid, IconButton, Switch} from '@mui/material'
 import type {FC} from 'react'
-import {useEffect, useRef} from 'react'
-import type {Processors} from '../../processors/processors'
+import {useRef, useState} from 'react'
+
+import type {AvailableProcessors} from '../../processors/processors'
 import processors from '../../processors/processors'
 import {useAppDispatch} from '../../redux/hooks'
-import {mountRunner} from '../../redux/slices/processorsSlice'
+import {deleteProcessor} from '../../redux/slices/queueSlice'
 import type {ProcessHandle} from '../../types/ProcessHandle'
 
 interface ProcessorFrameProps {
-  name: string
-  processorId: keyof Processors
+  processorId: keyof AvailableProcessors
   mountedId: string
 }
 
-const ProcessorFrame: FC<ProcessorFrameProps> = ({name, processorId, mountedId}) => {
+const ProcessorFrame: FC<ProcessorFrameProps> = ({processorId, mountedId}) => {
   const Processor = processors[processorId] // might need a copy here
-  const dispatch = useAppDispatch()
   const processorRef = useRef<ProcessHandle>(null)
-
-  useEffect(() => {
-    if (processorRef.current)
-      dispatch(mountRunner({mountedId, runner: processorRef.current.run}))
-  }, [processorRef, dispatch, mountedId])
+  const [active, setActive] = useState(true)
+  const dispatch = useAppDispatch()
 
   return (
     <Grid item xs={12}>
       <Card>
         <CardHeader
-          title={name}
+          title={processorId}
           action={(
             <>
-              <IconButton aria-label="delete">
+              <IconButton aria-label="delete" onClick={() => dispatch(deleteProcessor(mountedId))}>
                 <Delete />
               </IconButton>
-              <Switch aria-label="active" />
+              <Switch
+                aria-label="active"
+                checked={active}
+                onChange={() => setActive(active => !active)}
+              />
               <IconButton aria-label="info">
                 <Info />
               </IconButton>
             </>
         )}
         />
-        <CardContent>{<Processor ref={processorRef} />}</CardContent>
+        <CardContent>
+          <Processor ref={processorRef} />
+        </CardContent>
       </Card>
     </Grid>
   )

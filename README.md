@@ -1,7 +1,11 @@
-# Cryptanalysis Tool
-A stab at building a versatile, useful and scalable tool for analysing and cracking ciphertexts.
+<h1 align="center">CryptAnalysis Tool (CAT)</h1>
+<p align="center">
+    <a href="https://cryptanalysistool.com/">Live version</a> |
+    <a href="https://dev.cryptanalysistool.pages.dev/">Dev version</a> <br />
+    A stab at building a versatile, useful and scalable tool for analysing and cracking ciphertexts.
+</p>
 
-# React with Bun runtime
+# React with vite
 
 This is a React project bootstrapped with [vite](https://vitejs.dev/). The interface is designed using [mui](https://mui.com/) and testing is handled via [cypress](https://www.cypress.io/).
 
@@ -47,5 +51,5 @@ Commit messages should follow the [Conventional Commits](https://www.conventiona
 - Make sure the project can be built using `npm run build`
 - If you are fixing a bug:
     - If you are resolving a special issue, add `(fix #xxxx[,#xxxx])` (#xxxx is the issue id) in your Pull Request title.
-    - Add appropriate test coverage if applicable
+    - Add appropriate test coverage
 

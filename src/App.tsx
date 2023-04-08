@@ -1,35 +1,40 @@
 import {ThemeProvider} from '@emotion/react'
-import type {ThemeOptions} from '@mui/material'
 import {CssBaseline, Grid, createTheme} from '@mui/material'
 import type {FC} from 'react'
-import CipherInput from './containers/cipherInput/CipherInput'
+import Cipher from './containers/cipher/Cipher'
+import Graph from './containers/graph/Graph'
+import Information from './containers/information/Information'
 import Navigation from './containers/navigation/Navigation'
-
-const themeOptions: ThemeOptions = {
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#b71c1c',
-    },
-    secondary: {
-      main: '#fb8c00',
-    },
-  },
-  spacing: 5,
-}
+import Processors from './containers/processors/Processors'
+import themeOptions from './Theme'
 
 const theme = createTheme(themeOptions)
 
 const App: FC = () => {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline key="baseline" />
-      <Navigation key="navbar" />
-      <Grid key="app" container spacing={2}>
-        <Grid item xs={4}>
-          <CipherInput />
+      <CssBaseline />
+      <div className="App">
+        <Navigation />
+        <Grid
+          container
+          spacing={1}
+          sx={{p: 1}}
+        >
+          <Grid item xs={6}>
+            <Grid container spacing={1}>
+              <Cipher />
+              <Information />
+              <Graph />
+            </Grid>
+          </Grid>
+          <Grid item xs={6}>
+            <Grid container spacing={1}>
+              <Processors />
+            </Grid>
+          </Grid>
         </Grid>
-      </Grid>
+      </div>
     </ThemeProvider>
   )
 }

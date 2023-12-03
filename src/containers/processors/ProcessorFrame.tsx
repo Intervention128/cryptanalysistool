@@ -6,8 +6,8 @@ import {useEffect, useRef, useState} from 'react'
 import type {AvailableProcessors} from '../../processors/processors'
 import processors from '../../processors/processors'
 import {useAppDispatch} from '../../redux/hooks'
-import {updateResult, useResult} from '../../redux/slices/cipherTextSlice'
-import {deleteProcessor, nextRunner, useCurrentRunner} from '../../redux/slices/queueSlice'
+import {updateResultAndContinue, useResult} from '../../redux/slices/cipherTextSlice'
+import {deleteProcessor, useCurrentRunner} from '../../redux/slices/queueSlice'
 import type {ProcessHandle} from '../../types/ProcessHandle'
 
 interface ProcessorFrameProps {
@@ -24,10 +24,9 @@ const ProcessorFrame: FC<ProcessorFrameProps> = ({processorId, mountedId}) => {
   const currentResult = useResult()
 
   useEffect(() => {
-    if (!active || currentRunner !== mountedId) return
-    const nextResult = processorRef.current?.run(currentResult)
-    dispatch(updateResult(nextResult))
-    dispatch(nextRunner())
+    if (currentRunner !== mountedId) return
+    const nextResult = active ? processorRef.current?.run(currentResult) : currentResult
+    dispatch(updateResultAndContinue(nextResult))
   }, [currentRunner, currentResult, active])
 
   return (

@@ -20,7 +20,7 @@ export const cipherTextSlice = createSlice({
       state.cipherText = action.payload
       state.intermediary = [action.payload]
     },
-    updateResult: (state, action) => {
+    updateResultAndContinue: (state, action) => {
       state.intermediary.push(action.payload)
     },
   },
@@ -31,7 +31,7 @@ export const cipherTextSlice = createSlice({
   },
 })
 
-export const {updateCipherText, updateResult} = cipherTextSlice.actions
+export const {updateCipherText, updateResultAndContinue} = cipherTextSlice.actions
 
 export const useCipherText = () => useAppSelector(state => state.cipherText.cipherText)
 export const useResult = () => useAppSelector(state => state.cipherText.intermediary[state.cipherText.intermediary.length - 1])

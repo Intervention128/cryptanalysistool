@@ -3,6 +3,7 @@ import {createSlice} from '@reduxjs/toolkit'
 import type {AvailableProcessors} from '../../processors/processors'
 import type {QueueItem} from '../../types/ProcessorTypes'
 import {useAppSelector} from '../hooks'
+import {updateResultAndContinue} from './cipherTextSlice'
 
 interface QueueState {
   queue: QueueItem[]
@@ -36,16 +37,18 @@ export const queueSlice = createSlice({
     runQueue: (state) => {
       state.currentRunner = state.queue[0].mountedId
     },
-    nextRunner: (state) => {
+  },
+  extraReducers: (builder) => {
+    builder.addCase(updateResultAndContinue, (state) => {
       if (state.currentRunner === null) return
       const currentRunnerIndex = state.queue.findIndex(item => item.mountedId === state.currentRunner)
       if (currentRunnerIndex === state.queue.length - 1) state.currentRunner = null
       else state.currentRunner = state.queue[currentRunnerIndex + 1].mountedId
-    },
+    })
   },
 })
 
-export const {mountProcessor, changePosition, deleteProcessor, runQueue, nextRunner} = queueSlice.actions
+export const {mountProcessor, changePosition, deleteProcessor, runQueue} = queueSlice.actions
 
 export const useQueue = () => useAppSelector(state => state.queue.queue)
 export const useCurrentRunner = () => useAppSelector(state => state.queue.currentRunner)

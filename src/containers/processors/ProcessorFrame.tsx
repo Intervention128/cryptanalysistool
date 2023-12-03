@@ -1,8 +1,7 @@
 import {Delete, Info} from '@mui/icons-material'
-import {Card, CardContent, CardHeader, Grid, IconButton, Switch} from '@mui/material'
+import {Card, CardContent, CardHeader, CircularProgress, Grid, IconButton, Switch} from '@mui/material'
 import type {FC} from 'react'
 import {useEffect, useRef, useState} from 'react'
-
 import type {AvailableProcessors} from '../../processors/processors'
 import processors from '../../processors/processors'
 import {useAppDispatch} from '../../redux/hooks'
@@ -22,11 +21,19 @@ const ProcessorFrame: FC<ProcessorFrameProps> = ({processorId, mountedId}) => {
   const dispatch = useAppDispatch()
   const currentRunner = useCurrentRunner()
   const currentResult = useResult()
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (currentRunner !== mountedId) return
-    const nextResult = active ? processorRef.current?.run(currentResult) : currentResult
-    dispatch(updateResultAndContinue(nextResult))
+    setLoading(true)
+    let nextResult = currentResult
+    if (active) {
+      processorRef.current?.run(currentResult).then((result) => {
+        nextResult = result
+        dispatch(updateResultAndContinue(nextResult))
+        setLoading(false)
+      })
+    }
   }, [currentRunner, currentResult, active])
 
   return (
@@ -48,10 +55,10 @@ const ProcessorFrame: FC<ProcessorFrameProps> = ({processorId, mountedId}) => {
                 <Info />
               </IconButton>
             </>
-        )}
+          )}
         />
         <CardContent>
-          <Processor ref={processorRef} />
+          {loading ? <CircularProgress color="inherit" /> : <Processor ref={processorRef} />}
         </CardContent>
       </Card>
     </Grid>

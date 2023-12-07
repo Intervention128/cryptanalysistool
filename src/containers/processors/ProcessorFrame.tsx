@@ -1,47 +1,65 @@
 import {Delete, Info} from '@mui/icons-material'
-import {Card, CardContent, CardHeader, Grid, IconButton, Switch} from '@mui/material'
+import {Card, CardContent, CardHeader, CircularProgress, Grid, IconButton, Switch} from '@mui/material'
 import type {FC} from 'react'
-import {useEffect, useRef} from 'react'
-import type {Processors} from '../../processors/processors'
+import {useEffect, useRef, useState} from 'react'
+import type {AvailableProcessors} from '../../processors/processors'
 import processors from '../../processors/processors'
 import {useAppDispatch} from '../../redux/hooks'
-import {mountRunner} from '../../redux/slices/processorsSlice'
+import {updateResultAndContinue, useResult} from '../../redux/slices/cipherTextSlice'
+import {deleteProcessor, useCurrentRunner} from '../../redux/slices/queueSlice'
 import type {ProcessHandle} from '../../types/ProcessHandle'
 
 interface ProcessorFrameProps {
-  name: string
-  processorId: keyof Processors
-  mountedId: string
+  processorId: keyof AvailableProcessors
+  mountedId: `${keyof AvailableProcessors}-${number}`
 }
 
-const ProcessorFrame: FC<ProcessorFrameProps> = ({name, processorId, mountedId}) => {
+const ProcessorFrame: FC<ProcessorFrameProps> = ({processorId, mountedId}) => {
   const Processor = processors[processorId] // might need a copy here
-  const dispatch = useAppDispatch()
   const processorRef = useRef<ProcessHandle>(null)
+  const [active, setActive] = useState(true)
+  const dispatch = useAppDispatch()
+  const currentRunner = useCurrentRunner()
+  const currentResult = useResult()
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    if (processorRef.current)
-      dispatch(mountRunner({mountedId, runner: processorRef.current.run}))
-  }, [processorRef, dispatch, mountedId])
+    if (currentRunner !== mountedId) return
+    setLoading(true)
+    let nextResult = currentResult
+    if (active) {
+      processorRef.current?.run(currentResult).then((result) => {
+        nextResult = result
+        dispatch(updateResultAndContinue(nextResult))
+        setLoading(false)
+      })
+    }
+  }, [currentRunner, currentResult, active])
 
   return (
     <Grid item xs={12}>
       <Card>
         <CardHeader
-          title={name}
+          title={processorId}
           action={(
             <>
-              <IconButton aria-label="delete">
+              <IconButton aria-label="delete" onClick={() => dispatch(deleteProcessor(mountedId))}>
                 <Delete />
               </IconButton>
-              <Switch aria-label="active" />
+              <Switch
+                aria-label="active"
+                checked={active}
+                onChange={() => setActive(active => !active)}
+              />
               <IconButton aria-label="info">
                 <Info />
               </IconButton>
             </>
-        )}
+          )}
         />
-        <CardContent>{<Processor ref={processorRef} />}</CardContent>
+        <CardContent>
+          {loading ? <CircularProgress color="inherit" /> : <Processor ref={processorRef} />}
+        </CardContent>
       </Card>
     </Grid>
   )

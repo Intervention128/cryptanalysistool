@@ -1,35 +1,53 @@
 import {Add} from '@mui/icons-material'
 import {Card, CardActionArea, CardHeader, Fab, Grid} from '@mui/material'
 import type {FC} from 'react'
-import {useProcessors} from '../../redux/slices/processorsSlice'
+import {useState} from 'react'
+import {useQueue} from '../../redux/slices/queueSlice'
+import AddProcessor from './AddProcessor'
 import ProcessorFrame from './ProcessorFrame'
 
 const Processors: FC = () => {
-  const processors = useProcessors()
+  const processors = useQueue()
+  const [modalOpen, setModalOpen] = useState(false)
 
   return (
-    <Grid item xs={12}>
-      <Grid
-        container
-        spacing={1}
-        sx={{height: 'var(--height-content)', overflowY: 'auto', pb: 1}}
-      >
-        <Grid item xs={12}>
+    <>
+      <Grid item xs={12}>
+        <Grid
+          container
+          spacing={1}
+          sx={{
+            height: 'var(--height-content)',
+            overflowY: 'auto',
+            pb: 1,
+            alignContent: 'flex-start',
+          }}
+        >
           {processors.length === 0
             ? (
-              <Card sx={{width: '100%'}} data-testid="noprocessors">
-                <CardActionArea>
-                  <CardHeader title="There are no processors installed." subheader="Click this card or use the plus-button to add processors" />
-                </CardActionArea>
-              </Card>
+              <Grid item xs={12}>
+                <Card data-cy="noprocessors">
+                  <CardActionArea onClick={() => setModalOpen(true)}>
+                    <CardHeader
+                      title="There are no processors installed."
+                      subheader="Click this card or use the plus-button to add processors"
+                    />
+                  </CardActionArea>
+                </Card>
+              </Grid>
               )
             : processors.map(processor => <ProcessorFrame key={processor.mountedId} {...processor} />)}
+          <Fab
+            sx={{position: 'absolute', bottom: 15, right: 15, p: 0}}
+            onClick={() => setModalOpen(true)}
+            data-cy="addprocessor"
+          >
+            <Add />
+          </Fab>
         </Grid>
-        <Fab sx={{position: 'absolute', bottom: 15, right: 15, p: 0}} data-testid="addprocessor">
-          <Add />
-        </Fab>
       </Grid>
-    </Grid>
+      <AddProcessor open={modalOpen} onClose={() => setModalOpen(false)} />
+    </>
   )
 }
 

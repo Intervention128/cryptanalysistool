@@ -1,13 +1,32 @@
-import {Card, CardContent, CardHeader, TextareaAutosize} from '@mui/material'
+import {PlayArrow} from '@mui/icons-material'
+import {Card, CardContent, CardHeader, IconButton, TextareaAutosize} from '@mui/material'
 import type {ChangeEvent, FC} from 'react'
-import {useState} from 'react'
+import {useAppDispatch} from '../../redux/hooks'
+import {updateCipherText, useCipherText} from '../../redux/slices/cipherTextSlice'
+import {runQueue} from '../../redux/slices/queueSlice'
 
 const CipherInput: FC = () => {
-  const [ciphertext, setCiphertext] = useState<string>('')
+  const ciphertext = useCipherText()
+  const dispatch = useAppDispatch()
+  const setCiphertext = ({target: {value}}: ChangeEvent<HTMLTextAreaElement>) => {
+    dispatch(updateCipherText(value))
+  }
 
   return (
     <Card data-testid="cipherinput">
-      <CardHeader title="Ciphertext input" />
+      <CardHeader
+        title="Ciphertext input"
+        action={(
+          <IconButton
+            size="large"
+            aria-label="run analysis"
+            sx={{color: 'primary.main'}}
+            onClick={() => dispatch(runQueue())}
+          >
+            <PlayArrow />
+          </IconButton>
+        )}
+      />
       <CardContent>
         <TextareaAutosize
           placeholder="Paste ciphertext here..."
@@ -15,7 +34,7 @@ const CipherInput: FC = () => {
           maxRows={12}
           style={{width: '100%'}}
           value={ciphertext}
-          onChange={(event: ChangeEvent<HTMLTextAreaElement>) => setCiphertext(event.target.value)}
+          onChange={setCiphertext}
         />
       </CardContent>
     </Card>

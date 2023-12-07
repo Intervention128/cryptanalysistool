@@ -1,9 +1,9 @@
 import {Card, CardContent, CardHeader, TextareaAutosize} from '@mui/material'
-import type {ChangeEvent, FC} from 'react'
-import {useState} from 'react'
+import type {FC} from 'react'
+import {useResult} from '../../redux/slices/cipherTextSlice'
 
 const CipherOutput: FC = () => {
-  const [ciphertext, setCiphertext] = useState<string>('')
+  const ciphertext = useResult()
 
   return (
     <Card data-testid="cipheroutput">
@@ -15,7 +15,6 @@ const CipherOutput: FC = () => {
           maxRows={12}
           style={{width: '100%'}}
           value={ciphertext}
-          onChange={(event: ChangeEvent<HTMLTextAreaElement>) => setCiphertext(event.target.value)}
         />
       </CardContent>
     </Card>

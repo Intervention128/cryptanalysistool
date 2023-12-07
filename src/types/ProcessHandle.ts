@@ -1,3 +1,3 @@
 export interface ProcessHandle {
-  run: (cipher: string) => string
+  run: (cipher: string) => Promise<string>
 }

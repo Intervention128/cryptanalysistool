@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-namespace */
 /// <reference types="cypress" />
 // ***********************************************
 // This example commands.ts shows you how to
@@ -35,3 +36,17 @@
 //     }
 //   }
 // }
+
+import {mount} from 'cypress/react18'
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      mount: typeof mount
+      dataCy: (value: string) => Chainable<JQuery<HTMLElement>>
+    }
+  }
+}
+
+Cypress.Commands.add('mount', mount)
+Cypress.Commands.add('dataCy', value => cy.get(`[data-cy=${value}]`))

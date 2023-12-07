@@ -11,7 +11,7 @@ import type {ProcessHandle} from '../../types/ProcessHandle'
 
 interface ProcessorFrameProps {
   processorId: keyof AvailableProcessors
-  mountedId: string
+  mountedId: `${keyof AvailableProcessors}-${number}`
 }
 
 const ProcessorFrame: FC<ProcessorFrameProps> = ({processorId, mountedId}) => {

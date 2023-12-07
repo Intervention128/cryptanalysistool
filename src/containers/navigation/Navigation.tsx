@@ -7,7 +7,7 @@ const Navigation: FC = () => {
   return (
     <AppBar position="static" sx={{height: 'var(--height-header)'}}>
       <Container>
-        <Toolbar>
+        <Toolbar data-testid="navbar">
           <Typography variant="h5" noWrap>
             CRYPTANALYSIS
           </Typography>

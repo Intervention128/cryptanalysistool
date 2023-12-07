@@ -26,7 +26,7 @@ const Processors: FC = () => {
           {processors.length === 0
             ? (
               <Grid item xs={12}>
-                <Card>
+                <Card data-testid="noprocessors">
                   <CardActionArea onClick={() => setModalOpen(true)}>
                     <CardHeader
                       title="There are no processors installed."
@@ -40,6 +40,7 @@ const Processors: FC = () => {
           <Fab
             sx={{position: 'absolute', bottom: 15, right: 15, p: 0}}
             onClick={() => setModalOpen(true)}
+            data-testid="addprocessor"
           >
             <Add />
           </Fab>

@@ -13,7 +13,7 @@ const CipherInput: FC = () => {
   }
 
   return (
-    <Card data-testid="cipherinput">
+    <Card data-cy="cipherinput">
       <CardHeader
         title="Ciphertext input"
         action={(

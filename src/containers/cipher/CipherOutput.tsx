@@ -6,7 +6,7 @@ const CipherOutput: FC = () => {
   const ciphertext = useResult()
 
   return (
-    <Card data-testid="cipheroutput">
+    <Card data-cy="cipheroutput">
       <CardHeader title="Result" />
       <CardContent>
         <TextareaAutosize

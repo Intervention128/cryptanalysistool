@@ -5,7 +5,7 @@ import type {FC} from 'react'
 const Information: FC = () => {
   return (
     <Grid item xs={4}>
-      <Card sx={{height: '100%', position: 'relative'}} data-testid="information">
+      <Card sx={{height: '100%', position: 'relative'}} data-cy="information">
         <CardHeader title="Information" />
         <Fab
           variant="extended"

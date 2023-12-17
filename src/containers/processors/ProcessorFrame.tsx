@@ -26,13 +26,15 @@ const ProcessorFrame: FC<ProcessorFrameProps> = ({processorId, mountedId}) => {
   useEffect(() => {
     if (currentRunner !== mountedId) return
     setLoading(true)
-    let nextResult = currentResult
     if (active) {
       processorRef.current?.run(currentResult).then((result) => {
-        nextResult = result
-        dispatch(updateResultAndContinue(nextResult))
+        dispatch(updateResultAndContinue(result))
         setLoading(false)
       })
+    }
+    else {
+      dispatch(updateResultAndContinue(currentResult))
+      setLoading(false)
     }
   }, [currentRunner, currentResult, active])
 

@@ -18,7 +18,6 @@ export const cipherTextSlice = createSlice({
   reducers: {
     updateCipherText: (state, action) => {
       state.cipherText = action.payload
-      state.intermediary = [action.payload]
     },
     updateResultAndContinue: (state, action) => {
       state.intermediary.push(action.payload)

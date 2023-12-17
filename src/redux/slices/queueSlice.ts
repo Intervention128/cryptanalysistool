@@ -35,6 +35,7 @@ export const queueSlice = createSlice({
       state.queue = state.queue.filter(item => item.mountedId !== action.payload)
     },
     runQueue: (state) => {
+      if (state.queue.length === 0) return
       state.currentRunner = state.queue[0].mountedId
     },
   },

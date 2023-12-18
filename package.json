@@ -24,7 +24,7 @@
   "devDependencies": {
     "@singularit/eslint-config-react": "^1.1.0",
     "@types/react": "^18.2.45",
-    "@types/react-dom": "^18.0.11",
+    "@types/react-dom": "^18.2.18",
     "@vitejs/plugin-react": "^4.1.0",
     "cypress": "^13.2.0",
     "cypress-react-selector": "^3.0.0",

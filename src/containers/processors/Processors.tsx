@@ -2,7 +2,7 @@ import {Add} from '@mui/icons-material'
 import {Card, CardActionArea, CardHeader, Fab, Grid} from '@mui/material'
 import type {FC} from 'react'
 import {useState} from 'react'
-import {useQueue} from '../../redux/slices/queueSlice'
+import {useQueue} from '@redux/slices/queueSlice'
 import AddProcessor from './AddProcessor'
 import ProcessorFrame from './ProcessorFrame'
 

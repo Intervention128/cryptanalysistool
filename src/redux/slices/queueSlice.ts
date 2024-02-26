@@ -1,7 +1,7 @@
 import type {PayloadAction} from '@reduxjs/toolkit'
 import {createSlice} from '@reduxjs/toolkit'
-import type {AvailableProcessors} from '../../processors/processors'
-import type {QueueItem} from '../../types/ProcessorTypes'
+import type {AvailableProcessors} from '@processors/processors'
+import type {QueueItem} from '@projecttypes/ProcessorTypes'
 import {useAppSelector} from '../hooks'
 import {updateResultAndContinue} from './cipherTextSlice'
 

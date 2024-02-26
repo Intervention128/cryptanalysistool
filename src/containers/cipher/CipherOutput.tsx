@@ -1,7 +1,7 @@
 import {Box, Button, Card, CardContent, CardHeader, TextField} from '@mui/material'
 import type {FC} from 'react'
 import {ContentCopy, Download} from '@mui/icons-material'
-import {useResult} from '../../redux/slices/cipherTextSlice'
+import {useResult} from '@redux/slices/cipherTextSlice'
 
 const CipherOutput: FC = () => {
   const ciphertext = useResult()

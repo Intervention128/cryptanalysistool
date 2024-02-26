@@ -1,4 +1,4 @@
-import type {AvailableProcessors} from '../processors/processors'
+import type {AvailableProcessors} from '@processors/processors'
 export type MountedIdType = `${keyof AvailableProcessors}-${number}`
 
 export interface QueueItem {

@@ -1,9 +1,9 @@
 import {Info} from '@mui/icons-material'
 import {Card, CardActionArea, CardContent, CardHeader, IconButton} from '@mui/material'
 import type {FC} from 'react'
-import type {ProcessorInfo} from '../../processors/processors'
-import {useAppDispatch} from '../../redux/hooks'
-import {mountProcessor} from '../../redux/slices/queueSlice'
+import {useAppDispatch} from '@redux/hooks'
+import {mountProcessor} from '@redux/slices/queueSlice'
+import type {ProcessorInfo} from '@processors/processors'
 
 const ProcessorInfoCard: FC<ProcessorInfo> = ({name, processorId, description, madeBy}) => {
   const dispatch = useAppDispatch()

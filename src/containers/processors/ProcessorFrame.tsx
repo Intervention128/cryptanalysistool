@@ -2,12 +2,12 @@ import {Delete, Info} from '@mui/icons-material'
 import {Card, CardContent, CardHeader, CircularProgress, Grid, IconButton, Switch} from '@mui/material'
 import type {FC} from 'react'
 import {useEffect, useRef, useState} from 'react'
-import type {AvailableProcessors} from '../../processors/processors'
-import processors from '../../processors/processors'
-import {useAppDispatch} from '../../redux/hooks'
-import {updateResultAndContinue, useResult} from '../../redux/slices/cipherTextSlice'
-import {deleteProcessor, useCurrentRunner} from '../../redux/slices/queueSlice'
-import type {ProcessHandle} from '../../types/ProcessHandle'
+import {useAppDispatch} from '@redux/hooks'
+import {updateResultAndContinue, useResult} from '@redux/slices/cipherTextSlice'
+import {deleteProcessor, useCurrentRunner} from '@redux/slices/queueSlice'
+import processors from '@processors/processors'
+import type {AvailableProcessors} from '@processors/processors'
+import type {ProcessHandle} from '@projecttypes/ProcessHandle'
 
 interface ProcessorFrameProps {
   processorId: keyof AvailableProcessors

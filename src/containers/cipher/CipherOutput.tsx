@@ -26,13 +26,13 @@ const CipherOutput: FC = () => {
         />
         <Box sx={{display: 'flex', width: '100%', gap: 2, mt: 2}}>
           <Button
-            variant="contained" startIcon={<ContentCopy />}
+            variant="contained" startIcon={<ContentCopy />} data-cy="copy-ciphertext"
             onClick={() => navigator.clipboard.writeText(ciphertext)}
           >
             Copy
           </Button>
           <Button
-            variant="contained" startIcon={<Download />}
+            variant="contained" startIcon={<Download />} data-cy="download-ciphertext"
             onClick={downloadAsTxt}
           >
             Download

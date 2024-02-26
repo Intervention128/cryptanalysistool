@@ -11,13 +11,16 @@ describe('cryptanalysistool', () => {
   it('should display the ciphertext input field', () => {
     cy.visit(baseUrl)
     cy.dataCy('cipherinput').contains('Ciphertext input')
-    cy.get('textarea').not('[aria-hidden="true"]').eq(0).should('have.attr', 'placeholder', 'Paste ciphertext here...')
+    cy.dataCy('paste-ciphertext').should('contain', 'Paste')
+    cy.dataCy('upload-ciphertext').should('contain', 'Upload')
+    cy.dataCy('clear-ciphertext').should('contain', 'Clear')
   })
 
   it('should display the ciphertext output field', () => {
     cy.visit(baseUrl)
     cy.dataCy('cipheroutput').contains('Result')
-    cy.get('textarea').not('[aria-hidden="true"]').eq(1).should('have.attr', 'placeholder', 'Result will appear here')
+    cy.dataCy('copy-ciphertext').should('contain', 'Copy')
+    cy.dataCy('download-ciphertext').should('contain', 'Download')
   })
 
   it('should display the information field', () => {

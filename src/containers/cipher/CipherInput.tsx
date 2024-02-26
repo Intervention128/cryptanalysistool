@@ -43,13 +43,13 @@ const CipherInput: FC = () => {
         />
         <Box sx={{display: 'flex', width: '100%', gap: 2, mt: 2}}>
           <Button
-            variant="contained" startIcon={<ContentPaste />}
+            variant="contained" startIcon={<ContentPaste />} data-cy="paste-ciphertext"
             onClick={() => navigator.clipboard.readText().then(text => dispatch(updateCipherText(text)))}
           >
             Paste
           </Button>
           <Button
-            variant="contained" startIcon={<Upload />}
+            variant="contained" startIcon={<Upload />} data-cy="upload-ciphertext"
             onClick={() => inputRef.current?.click()}
           >
             <input
@@ -60,7 +60,7 @@ const CipherInput: FC = () => {
             Upload
           </Button>
           <Button
-            variant="contained" startIcon={<Clear />}
+            variant="contained" startIcon={<Clear />} data-cy="clear-ciphertext"
             onClick={() => dispatch(updateCipherText(''))}
           >
             Clear

@@ -1,4 +1,4 @@
-import CipherTestFrame from '../../../cypress/component/CipherTestFrame'
+import CipherTestFrame from '@cypress/component/CipherTestFrame'
 import CaesarCipher from './CaesarCipher'
 
 describe('CaesarCipher', () => {

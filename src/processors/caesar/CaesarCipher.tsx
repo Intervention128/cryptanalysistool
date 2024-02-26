@@ -1,6 +1,6 @@
 import {forwardRef, useImperativeHandle, useState} from 'react'
 import {TextField} from '@mui/material'
-import type {ProcessHandle} from '../../types/ProcessHandle'
+import type {ProcessHandle} from '@projecttypes/ProcessHandle'
 
 const CaesarCipher = forwardRef<ProcessHandle>((_, ref) => {
   CaesarCipher.displayName = 'CaesarCipher'

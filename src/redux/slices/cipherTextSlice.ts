@@ -1,3 +1,4 @@
+import type {PayloadAction} from '@reduxjs/toolkit'
 import {createSlice} from '@reduxjs/toolkit'
 import {useAppSelector} from '../hooks'
 import {runQueue} from './queueSlice'
@@ -16,10 +17,10 @@ export const cipherTextSlice = createSlice({
   name: 'cipherText',
   initialState,
   reducers: {
-    updateCipherText: (state, action) => {
+    updateCipherText: (state, action: PayloadAction<string>) => {
       state.cipherText = action.payload
     },
-    updateResultAndContinue: (state, action) => {
+    updateResultAndContinue: (state, action: PayloadAction<string>) => {
       state.intermediary.push(action.payload)
     },
   },

@@ -2,7 +2,7 @@ import {Close, Search} from '@mui/icons-material'
 import {Dialog, DialogContent, DialogTitle, IconButton, Input} from '@mui/material'
 import type {FC} from 'react'
 import {useState} from 'react'
-import {processorsInfo} from '../../processors/processors'
+import {processorsInfo} from '@processors/processors'
 import ProcessorInfoCard from './ProcessorInfoCard'
 
 interface AddProcessorProps {

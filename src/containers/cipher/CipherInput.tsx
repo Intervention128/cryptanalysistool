@@ -1,9 +1,9 @@
 import {Clear, ContentPaste, PlayArrow, Upload} from '@mui/icons-material'
 import {Box, Button, Card, CardContent, CardHeader, IconButton, TextField} from '@mui/material'
 import {type ChangeEvent, type FC, useEffect, useRef, useState} from 'react'
-import {useAppDispatch} from '../../redux/hooks'
-import {updateCipherText, useCipherText} from '../../redux/slices/cipherTextSlice'
-import {runQueue} from '../../redux/slices/queueSlice'
+import {useAppDispatch} from '@redux/hooks'
+import {updateCipherText, useCipherText} from '@redux/slices/cipherTextSlice'
+import {runQueue} from '@redux/slices/queueSlice'
 
 const CipherInput: FC = () => {
   const ciphertext = useCipherText()
@@ -17,7 +17,7 @@ const CipherInput: FC = () => {
   useEffect(() => {
     if (!inputFiles || inputFiles.length === 0) return
     const reader = new FileReader()
-    reader.onload = () => dispatch(updateCipherText(reader.result))
+    reader.onload = () => dispatch(updateCipherText(reader.result as string))
     reader.readAsText(inputFiles[0])
   }, [inputFiles])
 
